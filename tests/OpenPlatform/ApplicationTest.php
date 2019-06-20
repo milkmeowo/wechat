@@ -25,6 +25,7 @@ class ApplicationTest extends TestCase
         $this->assertInstanceOf(\EasyWeChat\OpenPlatform\Auth\VerifyTicket::class, $app->verify_ticket);
         $this->assertInstanceOf(\EasyWeChat\OpenPlatform\Server\Guard::class, $app->server);
         $this->assertInstanceOf(\EasyWeChat\OpenPlatform\CodeTemplate\Client::class, $app->code_template);
+        $this->assertInstanceOf(\EasyWeChat\OpenPlatform\Component\Client::class, $app->component);
     }
 
     public function testGetPreAuthorizationUrl()
@@ -32,7 +33,7 @@ class ApplicationTest extends TestCase
         $app = \Mockery::mock(Application::class.'[createPreAuthorizationCode]', ['app_id' => 'component-app-id'], function ($mock) {
             $mock->expects()->createPreAuthorizationCode()->andReturn([
                 'pre_auth_code' => 'auth-code@123456',
-            ])->once();
+            ]);
         });
 
         $this->assertSame(
@@ -51,7 +52,7 @@ class ApplicationTest extends TestCase
         $app = \Mockery::mock(Application::class.'[createPreAuthorizationCode]', ['app_id' => 'component-app-id'], function ($mock) {
             $mock->expects()->createPreAuthorizationCode()->andReturn([
                 'pre_auth_code' => 'auth-code@123456',
-            ])->once();
+            ]);
         });
 
         $this->assertSame(
